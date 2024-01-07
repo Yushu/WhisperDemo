@@ -1,9 +1,10 @@
 import streamlit as st
 from pytube import YouTube
 from haystack.nodes import PromptNode, PromptModel
+from getpass import getpass
 from haystack.nodes.audio import WhisperTranscriber
 from haystack.pipelines import Pipeline
-from model_add import LlamaCPPInvocationLayer
+# from model_add import LlamaCPPInvocationLayer
 import time
 
 st.set_page_config(
@@ -16,6 +17,7 @@ def download_video(url):
     return video.download()
 
 def initialize_model(full_path):
+    
     return PromptModel(
         model_name_or_path=full_path,
         invocation_layer_class=LlamaCPPInvocationLayer,
@@ -58,9 +60,10 @@ def main():
         file_path = download_video(youtube_url)
 
         # Initialize model
-        full_path = "llama-2-7b-32k-instruct.Q4_K_S.gguf"
-        model = initialize_model(full_path)
-        prompt_node = prompt_node = initialize_prompt_node(model)
+        # full_path = "llama-2-7b-32k-instruct.Q4_K_S.gguf"
+        # model = initialize_model(full_path)
+        HF_TOKEN = getpass("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")
+        prompt_node = PromptNode(model_name_or_path="mistralai/Mistral-7B-Instruct-v0.1", max_length=800, api_key=HF_TOKEN)
         # Transcribe audio
         output = transcribe_audio(file_path, prompt_node)
 
