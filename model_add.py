@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class LlamaCPPInvocationLayer(PromptModelInvocationLayer):
     def __init__(self, model_name_or_path: Union[str,os.PathLike],
         max_length: Optional[int] = 128,
-        max_context: Optional[int] = 512,
+        max_context: Optional[int] = 32000,
         n_parts: Optional[int] = -1,
         seed: Optional[int]= 1337,
         f16_kv: Optional[bool] = True,
