@@ -63,7 +63,7 @@ def main():
         # full_path = "llama-2-7b-32k-instruct.Q4_K_S.gguf"
         # model = initialize_model(full_path)
         HF_TOKEN = getpass("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")
-        prompt_node = PromptNode(model_name_or_path="mistralai/Mistral-7B-Instruct-v0.1", max_length=800, api_key=HF_TOKEN)
+        prompt_node = PromptNode(model_name_or_path="mistralai/Mistral-7B-Instruct-v0.1", max_length=512, api_key=HF_TOKEN)
         # Transcribe audio
         output = transcribe_audio(file_path, prompt_node)
 
